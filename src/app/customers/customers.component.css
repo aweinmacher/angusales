@@ -23,3 +23,7 @@
     overflow: auto;
     max-height: 500px;
   }
+
+  .pointer {
+    cursor: pointer;
+  }

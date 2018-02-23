@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
 import { ActivatedRoute } from '@angular/router'
 
@@ -9,10 +9,16 @@ import { ActivatedRoute } from '@angular/router'
   templateUrl: './customers.component.html',
 })
 export class CustomersComponent {
-  displayedColumns = ['id', 'firstName', 'lastName', 'company', 'phone'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns = ['id', 'firstName', 'lastName', 'company', 'phone', 'icons'];
+  data: Customer[] = [];
+  dataSource = new MatTableDataSource(CUSTOMERS_DATA);
 
   constructor(private route: ActivatedRoute) { }
+
+  onInit() {
+    // this.data = CUSTOMERS_DATA;
+    // this.dataSource = new MatTableDataSource(this.data);
+  }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -30,7 +36,7 @@ export interface Customer {
   phone: number
 }
 
-const ELEMENT_DATA: Customer[] = [
+const CUSTOMERS_DATA: Customer[] = [
   {id: 1, firstName: 'Hydrogen', lastName: 'H', company: 'Elevation', email: 'Hydrogen@wework.com', phone: 123},
   {id: 2, firstName: 'Helium', lastName: 'He', company: 'Elevation', email: 'Hydrogen@wework.com', phone: 123},
   {id: 3, firstName: 'Lithium', lastName: 'Li', company: 'Elevation', email: 'Hydrogen@wework.com', phone: 123},
