@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('mean-angular5 App', () => {
+describe('Angusales App', () => {
   let page: AppPage;
 
   beforeEach(() => {

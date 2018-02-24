@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './/app-routing.module';
 import { MatTableModule, MatInputModule, MatFormFieldModule, MatPaginatorModule, MatDialogModule} from "@angular/material";
@@ -13,6 +14,7 @@ import { CustomersComponent } from './customers/customers.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { CustomerComponent } from './customer/customer.component';
 import { AddCustDialogComponent } from './add-cust-dialog/add-cust-dialog.component';
+import { HttpClient } from '@angular/common/http';
 
 
 @NgModule({
@@ -25,15 +27,16 @@ import { AddCustDialogComponent } from './add-cust-dialog/add-cust-dialog.compon
     AddCustDialogComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule, 
     FormsModule,
+    HttpClientModule,
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
-    MatDialogModule,
-    BrowserAnimationsModule
+    MatDialogModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent],

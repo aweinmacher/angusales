@@ -4,5 +4,5 @@ export class Customer {
     lastName: string;
     company: string;
     email: string;
-    phone: number
+    phone: string;
 }

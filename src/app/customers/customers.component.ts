@@ -5,7 +5,7 @@ import { DataService } from '../data.service';
 import { Customer } from '../models/customer-model';
 
 /*** @title Table with filtering */
-@Component ({
+@Component({
   selector: 'app-customers',
   styleUrls: ['./customers.component.css'],
   templateUrl: './customers.component.html',
@@ -14,15 +14,27 @@ export class CustomersComponent implements OnInit {
   displayedColumns = ['id', 'firstName', 'lastName', 'company', 'phone', 'icons'];
   data: Customer[];
   dataSource: MatTableDataSource<Customer>;
-
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
   ) { }
 
   ngOnInit() {
-    this.data = this.dataService.getCustomers();
-    this.dataSource = new MatTableDataSource(this.data);
+    this.dataService.getCustomers()
+      .subscribe(data => {
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator; },
+        error => { console.error(error) });
+    ;
+
+    // this.dataService.getCustomers()
+    //   .subscribe(data => this.data = data,
+    //     error => { console.error(error) });
+    // ;
+    // console.log(this.data);
+    // this.dataSource = new MatTableDataSource(this.data);
+
   }
 
   applyFilter(filterValue: string) {
@@ -31,11 +43,11 @@ export class CustomersComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  
 
   /*** Set the paginator after the view init since this component will be able to query its view for the initialized paginator. */
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
+  // ngAfterViewInit() {
+  //   // this.dataSource.paginator = this.paginator;
+  // }
 
 }

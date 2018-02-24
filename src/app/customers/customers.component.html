@@ -1,8 +1,5 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<!-- <input type="button" name="singleCust" value="View" [routerLink]="['customers', 4]" /> -->
-<!-- <i class="material-icons">add</i> -->
-
 <div class="example-container mat-elevation-z8">
   <div class="example-header">
     <mat-form-field>
@@ -48,9 +45,15 @@
     <ng-container matColumnDef="icons">
       <mat-header-cell *matHeaderCellDef> </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <span class='pointer icon' [routerLink]="['customers', element.id]"><i class="material-icons">more_horiz</i></span>
-        <span class='pointer icon'><i class="material-icons">create</i></span>
-        <span class='pointer icon'><i class="material-icons">delete</i></span>
+        <span class='pointer icon' [routerLink]="['customers', element.id]">
+          <i class="material-icons">more_horiz</i>
+        </span>
+        <span class='pointer icon'>
+          <i class="material-icons">create</i>
+        </span>
+        <span class='pointer icon'>
+          <i class="material-icons">delete</i>
+        </span>
       </mat-cell>
     </ng-container>
 
@@ -58,9 +61,7 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 
-  <mat-paginator #paginator [pageSize]="10"
-   [pageSizeOptions]="[5, 10, 20]" 
-   [showFirstLastButtons]="true">
+  <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
   </mat-paginator>
 
 </div>

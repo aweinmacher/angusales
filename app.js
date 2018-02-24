@@ -3,6 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var api = require('./routes/api.js');
 
 var app = express();
 
@@ -12,9 +13,10 @@ app.use(bodyParser.urlencoded({ 'extended': 'false' }));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // Set our api routes
-app.get('/api', function(req, res) {
-  res.send('hello world');
-});
+// app.get('/api', function(req, res) {
+//   app.use('hello world');
+// });
+app.use('/api', api);
 
 // Catch all other routes and return the index file
 app.get('*', function(req, res) { res.sendFile(path.join(__dirname, 'dist/index.html')); });
