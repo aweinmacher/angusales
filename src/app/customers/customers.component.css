@@ -30,7 +30,8 @@
 
   .icon {
     margin-right: 25px;
-    color:#212529;
+    /* color:#212529; */
+    color: gray;
     text-shadow: darkgray; 
   }
 

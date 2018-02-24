@@ -16,6 +16,7 @@ export class AddCustDialogComponent implements OnInit {
     public data: any 
   ) { }
 
+  // why do we need this?
   onNoClick(): void {
     this.dialogRef.close();
   }
