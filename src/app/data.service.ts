@@ -6,14 +6,14 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class DataService {
-  customersData: Subject<Customer[]> = new Subject();
+  customersData$: Subject<Customer[]> = new Subject();
 
   constructor(private http: HttpClient) { }
 
   getCustomers(): void {
     this.http.get<Customer[]>('http://localhost:3000/api/customers')
     .subscribe(
-      data => this.customersData.next(data)
+      data => this.customersData$.next(data)
     );
   }
 

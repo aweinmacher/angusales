@@ -21,7 +21,7 @@ export class CustomersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.dataService.customersData
+    this.dataService.customersData$
     .subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator; },
