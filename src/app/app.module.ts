@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './/app-routing.module';
-import { MatTableModule, MatInputModule, MatFormFieldModule } from "@angular/material";
+import { MatTableModule, MatInputModule, MatFormFieldModule, MatPaginatorModule} from "@angular/material";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DataService } from './data.service';
@@ -27,6 +27,7 @@ import { CustomerComponent } from './customer/customer.component';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
+    MatPaginatorModule,
     BrowserAnimationsModule
   ],
   providers: [DataService],

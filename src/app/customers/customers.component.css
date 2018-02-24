@@ -27,3 +27,13 @@
   .pointer {
     cursor: pointer;
   }
+
+  .icon {
+    margin-right: 25px;
+    color: grey;
+    text-shadow: darkgray; 
+  }
+
+  .icon:hover {
+    color: crimson;
+  }
