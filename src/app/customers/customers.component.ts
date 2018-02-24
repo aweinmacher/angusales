@@ -10,7 +10,7 @@ import { Customer } from '../models/customer-model';
   styleUrls: ['./customers.component.css'],
   templateUrl: './customers.component.html',
 })
-export class CustomersComponent {
+export class CustomersComponent implements OnInit {
   displayedColumns = ['id', 'firstName', 'lastName', 'company', 'phone', 'icons'];
   data: Customer[];
   dataSource: MatTableDataSource<Customer>;
@@ -33,8 +33,7 @@ export class CustomersComponent {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  /*** Set the paginator after the view init since this component will
-   * be able to query its view for the initialized paginator. */
+  /*** Set the paginator after the view init since this component will be able to query its view for the initialized paginator. */
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }

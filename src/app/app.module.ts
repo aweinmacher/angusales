@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './/app-routing.module';
-import { MatTableModule, MatInputModule, MatFormFieldModule, MatPaginatorModule} from "@angular/material";
+import { MatTableModule, MatInputModule, MatFormFieldModule, MatPaginatorModule, MatDialogModule} from "@angular/material";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DataService } from './data.service';
@@ -11,6 +11,7 @@ import { NavComponent } from './nav/nav.component';
 import { CustomersComponent } from './customers/customers.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { CustomerComponent } from './customer/customer.component';
+import { AddCustDialogComponent } from './add-cust-dialog/add-cust-dialog.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { CustomerComponent } from './customer/customer.component';
     NavComponent,
     CustomersComponent,
     CompaniesComponent,
-    CustomerComponent
+    CustomerComponent,
+    AddCustDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +30,11 @@ import { CustomerComponent } from './customer/customer.component';
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
+    MatDialogModule,
     BrowserAnimationsModule
   ],
   providers: [DataService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [NavComponent, AddCustDialogComponent],
 })
 export class AppModule { }

@@ -30,10 +30,11 @@
 
   .icon {
     margin-right: 25px;
-    color: grey;
+    color:#212529;
     text-shadow: darkgray; 
   }
 
   .icon:hover {
     color: crimson;
+    /* color: #3f51b5; */
   }
