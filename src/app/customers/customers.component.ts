@@ -12,7 +12,7 @@ import { Customer } from '../models/customer-model';
 })
 export class CustomersComponent implements OnInit {
   displayedColumns = ['id', 'firstName', 'lastName', 'company', 'phone', 'icons'];
-  data: Customer[];
+  // data: Customer[];
   dataSource: MatTableDataSource<Customer>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
@@ -21,20 +21,13 @@ export class CustomersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.dataService.getCustomers()
-      .subscribe(data => {
-        this.dataSource = new MatTableDataSource(data);
-        this.dataSource.paginator = this.paginator; },
-        error => { console.error(error) });
-    ;
-
-    // this.dataService.getCustomers()
-    //   .subscribe(data => this.data = data,
-    //     error => { console.error(error) });
-    // ;
-    // console.log(this.data);
-    // this.dataSource = new MatTableDataSource(this.data);
-
+    this.dataService.customersData
+    .subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator; },
+      error => { console.error(error) });
+  ;
+  this.dataService.getCustomers();
   }
 
   applyFilter(filterValue: string) {

@@ -12,25 +12,33 @@ var connection = mysql.createConnection({
 
 // GET CUSTOMERS
 router.get('/customers', (req, res) => {
-    try{
-    connection.query(
-        `SELECT cust_id as id, firstname as firstName, lastname as lastName, 
+    try {
+        connection.query(
+            `SELECT cust_id as id, firstname as firstName, lastname as lastName, 
         companies.name as company, email, phone 
         FROM customers left join companies on customers.comp_id = companies.comp_id 
         order by cust_id`,
-        function (err, rows, fields) {
-            if (!err) res.send(rows);
-            else console.log('Error while performing Query.');
-        });
-    } catch(err) {
+            function (err, rows, fields) {
+                if (!err) res.send(rows);
+                else console.log('Error while performing Query.');
+            });
+    } catch (err) {
         console.log(err);
     }
 });
 
-router.get('/', (req, res) => {
-    res.send('hi');
+// ADD CUSTOMER
+router.post('/customers/add', (req, res) => {
+    let newCust = req.body;
+    console.log('body: ' + newCust);
+    connection.query(
+        `INSERT INTO customers SET ?`,
+        newCust,
+        function (err, rows, fields) {
+            if (!err) res.send(rows);
+            else console.log('Error while performing Query.');
+        });
 });
-
 
 
 
