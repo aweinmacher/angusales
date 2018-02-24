@@ -2,7 +2,7 @@
       rel="stylesheet">
 
 <!-- <input type="button" name="singleCust" value="View" [routerLink]="['customers', 4]" /> -->
-<!-- <i class="material-icons">create</i> -->
+<!-- <i class="material-icons">add</i> -->
 
 <div class="example-container mat-elevation-z8">
   <div class="example-header">
@@ -48,6 +48,7 @@
     <ng-container matColumnDef="icons">
         <mat-header-cell *matHeaderCellDef> </mat-header-cell>
         <mat-cell *matCellDef="let element"> 
+          <i class="material-icons">more_horiz</i>
           <i class="material-icons">create</i>
           <i class="material-icons">delete</i> 
         </mat-cell>

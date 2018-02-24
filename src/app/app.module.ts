@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './/app-routing.module';
 import { MatTableModule, MatInputModule, MatFormFieldModule } from "@angular/material";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { DataService } from './data.service';
+
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
-import { AppRoutingModule } from './/app-routing.module';
 import { CustomersComponent } from './customers/customers.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { CustomerComponent } from './customer/customer.component';
@@ -27,7 +29,7 @@ import { CustomerComponent } from './customer/customer.component';
     MatInputModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
