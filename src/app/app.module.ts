@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './/app-routing.module';
 import { MatTableModule, MatInputModule, MatFormFieldModule, MatPaginatorModule, MatDialogModule} from "@angular/material";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { DataService } from './data.service';
 
@@ -26,6 +27,7 @@ import { AddCustDialogComponent } from './add-cust-dialog/add-cust-dialog.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,

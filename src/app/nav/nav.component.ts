@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { AddCustDialogComponent } from '../add-cust-dialog/add-cust-dialog.component';
+import { Customer } from '../models/customer-model'
 
 @Component({
   selector: 'app-nav',
@@ -9,15 +10,22 @@ import { AddCustDialogComponent } from '../add-cust-dialog/add-cust-dialog.compo
 })
 export class NavComponent implements OnInit {
 
+  newCustomer: Customer = new Customer();
+
   constructor( public dialog: MatDialog ) { }
 
   ngOnInit() { }
 
-  openDialog() {
-    this.dialog.open(AddCustDialogComponent, {
-      data: {
-        animal: 'panda'
-      }
+  openDialog(): void {
+    let dialogRef = this.dialog.open(AddCustDialogComponent, {
+      width: '50vw',
+      data: this.newCustomer
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.newCustomer = result;
+      console.log(result);
     });
   }
 
