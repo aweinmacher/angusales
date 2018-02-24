@@ -20,7 +20,7 @@ router.get('/customers', (req, res) => {
         order by cust_id`,
             function (err, rows, fields) {
                 if (!err) res.send(rows);
-                else console.log('Error while performing Query.');
+                else console.log('get customers', err);
             });
     } catch (err) {
         console.log(err);
@@ -36,10 +36,20 @@ router.post('/customers/add', (req, res) => {
         newCust,
         function (err, rows, fields) {
             if (!err) res.send(rows);
-            else console.log('Error while performing Query.');
+            else console.log('insert customer', err);
         });
 });
 
+// DELETE CUSTOMER
+router.delete('/customers/delete/:id', (req, res) => {
+    let custId = req.params.id;
+    connection.query(
+        `DELETE from customers where cust_id = ${custId}`,
+        function (err, rows, fields) {
+            if (!err) res.send(rows);
+            else console.log('delete customer', err);
+        });
+});
 
 
 

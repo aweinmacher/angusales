@@ -36,6 +36,11 @@ export class CustomersComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
+  deleteCustomer(cust: Customer) {
+    this.dataService.deleteCustomer(cust).subscribe(
+      data => this.dataService.getCustomers()
+    );
+  }
   
 
   /*** Set the paginator after the view init since this component will be able to query its view for the initialized paginator. */

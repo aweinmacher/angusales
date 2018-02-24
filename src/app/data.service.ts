@@ -28,6 +28,11 @@ export class DataService {
     });
   }
 
+  deleteCustomer(cust: Customer): Observable<Customer> {
+    console.log('delete cust at service');
+    return this.http.delete<Customer>(`http://localhost:3000/api/customers/delete/${cust.id}`);
+  }
+
 
 }
 
