@@ -15,18 +15,27 @@ export class NavComponent implements OnInit {
 
   newCustomer: Customer = new Customer();
   newCompany: Company = new Company();
+  compList: any[]; // shoud be subsribed to the compData$ and map it in order to 
 
   constructor(
     public dialog: MatDialog,
     private dataService: DataService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.dataService.getCompanies(); // not sure it will always work before next line
+    this.dataService.companiesData$
+      .subscribe(data => {
+        this.compList = data.map(item => {
+          return { comp_id: item.id, name: item.name }
+        })
+      })
+  }
 
   openDialog(): void {
     let dialogRef = this.dialog.open(CustDialogComponent, {
       width: '50vw',
-      data: {cust: this.newCustomer, heading: 'New'}
+      data: { cust: this.newCustomer, heading: 'New', compList: this.compList }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -35,13 +44,14 @@ export class NavComponent implements OnInit {
       this.dataService.addCustomer(result).subscribe(
         data => this.dataService.getCustomers()
       );
+      this.newCustomer = new Customer();
     });
   }
 
   openCompDialog(): void {
     let dialogRef = this.dialog.open(CompDialogComponent, {
       width: '50vw',
-      data: {comp: this.newCompany, heading: 'New'}
+      data: { comp: this.newCompany, heading: 'New' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
