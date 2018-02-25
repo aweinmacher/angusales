@@ -15,7 +15,7 @@ export class CustomersComponent implements OnInit {
   displayedColumns = ['id', 'firstName', 'lastName', 'company', 'phone', 'icons'];
   dataSource: MatTableDataSource<Customer>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  
+
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
@@ -24,12 +24,13 @@ export class CustomersComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.customersData$
-    .subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator; },
-      error => { console.error(error) });
-  ;
-  this.dataService.getCustomers();
+      .subscribe(data => {
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
+      },
+        error => { console.error(error) });
+    ;
+    this.dataService.getCustomers();
   }
 
   applyFilter(filterValue: string) {
@@ -43,11 +44,11 @@ export class CustomersComponent implements OnInit {
       data => this.dataService.getCustomers()
     );
   }
-  
+
   openDialog(updCustomer): void {
     let dialogRef = this.dialog.open(CustDialogComponent, {
       width: '50vw',
-      data: {cust: updCustomer, heading: 'Edit'}
+      data: { cust: updCustomer, heading: 'Edit' }
     });
 
     dialogRef.afterClosed().subscribe(result => {

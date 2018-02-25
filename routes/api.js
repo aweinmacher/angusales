@@ -90,7 +90,18 @@ router.get('/companies', (req, res) => {
             else console.log('get companies', err);
         });
 });
-
+// ADD COMPANY
+router.post('/companies/add', (req, res) => {
+    let newComp = req.body;
+    console.log('body: ' + newComp);
+    connection.query(
+        `INSERT INTO companies SET ?`,
+        newComp,
+        function (err, rows, fields) {
+            if (!err) res.send(rows);
+            else console.log('insert company', err);
+        });
+});
 
 
 

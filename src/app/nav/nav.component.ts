@@ -45,11 +45,10 @@ export class NavComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The company dialog was closed');
-      console.log(result);
-      // this.dataService.addCompany(result).subscribe(
-      //   data => this.dataService.getCustomers()
-      // );
+      console.log('The company dialog was closed', result);
+      this.dataService.addCompany(result).subscribe(
+        data => this.dataService.getCompanies()
+      );
     });
   }
 

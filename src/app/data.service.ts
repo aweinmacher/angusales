@@ -13,18 +13,18 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getCustomers(): void {
-    this.http.get<Customer[]>('http://localhost:3000/api/customers')
+    this.http.get<Customer[]>('api/customers')
     .subscribe(
       data => this.customersData$.next(data)
     );
   }
   getCustById(id): Observable<Customer[]> {
     console.log('get cust by ID at service');
-    return this.http.get<Customer[]>(`http://localhost:3000/api/customers/${id}`);
+    return this.http.get<Customer[]>(`api/customers/${id}`);
   }
   addCustomer(newCust: Customer):Observable<Customer> { // better to do at the server
     console.log('add cust at service');
-    return this.http.post<Customer>('http://localhost:3000/api/customers/add', {
+    return this.http.post<Customer>('api/customers/add', {
       firstname: newCust.firstName,
       lastname: newCust.lastName,
       comp_id: Number(newCust.company), // will be replaced with the select input
@@ -34,11 +34,11 @@ export class DataService {
   }
   deleteCustomer(cust: Customer): Observable<Customer> {
     console.log('delete cust at service');
-    return this.http.delete<Customer>(`http://localhost:3000/api/customers/delete/${cust.id}`);
+    return this.http.delete<Customer>(`api/customers/delete/${cust.id}`);
   }
   editCustomer(updCust: Customer): Observable<Customer> {
     console.log('edit cust at service');
-    return this.http.put<Customer>(`http://localhost:3000/api/customers/update/${updCust.id}`, {
+    return this.http.put<Customer>(`api/customers/update/${updCust.id}`, {
       firstname: updCust.firstName,
       lastname: updCust.lastName,
       comp_id: Number(updCust.company), // will be replaced with the select input
@@ -48,12 +48,19 @@ export class DataService {
   }
 
   getCompanies(): void {
-    this.http.get<Company[]>('http://localhost:3000/api/companies')
+    this.http.get<Company[]>('api/companies')
     .subscribe(
       data => this.companiesData$.next(data)
     );
   }
-
+  addCompany(newComp: Company):Observable<Company> { // better to do at the server
+    console.log('add comp at service');
+    return this.http.post<Company>('api/companies/add', {
+      name: newComp.name,
+      address: newComp.address,
+      country: newComp.country
+    });
+  }
 
 }
 
