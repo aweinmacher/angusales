@@ -15,6 +15,7 @@ import { CompaniesComponent } from './companies/companies.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CustDialogComponent } from './cust-dialog/cust-dialog.component';
 import { HttpClient } from '@angular/common/http';
+import { CompDialogComponent } from './comp-dialog/comp-dialog.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { HttpClient } from '@angular/common/http';
     CustomersComponent,
     CompaniesComponent,
     CustomerComponent,
-    CustDialogComponent
+    CustDialogComponent,
+    CompDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -40,6 +42,6 @@ import { HttpClient } from '@angular/common/http';
   ],
   providers: [DataService],
   bootstrap: [AppComponent],
-  entryComponents: [NavComponent, CustDialogComponent],
+  entryComponents: [NavComponent, CustDialogComponent, CompDialogComponent],
 })
 export class AppModule { }
