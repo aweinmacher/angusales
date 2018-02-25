@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { AddCustDialogComponent } from '../add-cust-dialog/add-cust-dialog.component';
+import { CustDialogComponent } from '../cust-dialog/cust-dialog.component';
 import { Customer } from '../models/customer-model';
 import { DataService } from '../data.service';
 
@@ -21,7 +21,7 @@ export class NavComponent implements OnInit {
   ngOnInit() { }
 
   openDialog(): void {
-    let dialogRef = this.dialog.open(AddCustDialogComponent, {
+    let dialogRef = this.dialog.open(CustDialogComponent, {
       width: '50vw',
       data: {cust: this.newCustomer, heading: 'New'}
     });

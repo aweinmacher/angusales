@@ -13,7 +13,7 @@ import { NavComponent } from './nav/nav.component';
 import { CustomersComponent } from './customers/customers.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { CustomerComponent } from './customer/customer.component';
-import { AddCustDialogComponent } from './add-cust-dialog/add-cust-dialog.component';
+import { CustDialogComponent } from './cust-dialog/cust-dialog.component';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -24,7 +24,7 @@ import { HttpClient } from '@angular/common/http';
     CustomersComponent,
     CompaniesComponent,
     CustomerComponent,
-    AddCustDialogComponent
+    CustDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -40,6 +40,6 @@ import { HttpClient } from '@angular/common/http';
   ],
   providers: [DataService],
   bootstrap: [AppComponent],
-  entryComponents: [NavComponent, AddCustDialogComponent],
+  entryComponents: [NavComponent, CustDialogComponent],
 })
 export class AppModule { }

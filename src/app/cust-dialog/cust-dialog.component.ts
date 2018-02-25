@@ -3,15 +3,15 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Customer } from '../models/customer-model';
 
 @Component({
-  selector: 'app-add-cust-dialog',
+  selector: 'app-cust-dialog',
   template: 'passed in {{ data }}',
-  templateUrl: './add-cust-dialog.component.html',
-  styleUrls: ['./add-cust-dialog.component.css']
+  templateUrl: './cust-dialog.component.html',
+  styleUrls: ['./cust-dialog.component.css']
 })
-export class AddCustDialogComponent implements OnInit {
+export class CustDialogComponent implements OnInit {
 
   constructor( 
-    public dialogRef: MatDialogRef<AddCustDialogComponent>,
+    public dialogRef: MatDialogRef<CustDialogComponent>,
     @Inject(MAT_DIALOG_DATA) 
     public data: any 
   ) { }

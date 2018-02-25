@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddCustDialogComponent } from './add-cust-dialog.component';
+import { CustDialogComponent } from './cust-dialog.component';
 
-describe('AddCustDialogComponent', () => {
-  let component: AddCustDialogComponent;
-  let fixture: ComponentFixture<AddCustDialogComponent>;
+describe('CustDialogComponent', () => {
+  let component: CustDialogComponent;
+  let fixture: ComponentFixture<CustDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddCustDialogComponent ]
+      declarations: [ CustDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddCustDialogComponent);
+    fixture = TestBed.createComponent(CustDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
