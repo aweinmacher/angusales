@@ -27,6 +27,20 @@ router.get('/customers', (req, res) => {
     }
 });
 
+// GET CUSTOMER DETAILS
+router.get('/customers/:id', (req, res) => {
+    console.log('get cust by ID at the server: ', req.params.id);
+    connection.query(
+        `SELECT cust_id as id, firstname as firstName, lastname as lastName, companies.name as company, email, phone 
+        FROM customers
+        left join companies on customers.comp_id = companies.comp_id
+        WHERE cust_id = ${req.params.id}`,
+        function (err, rows, fields) {
+            if (!err) res.send(rows);
+            else console.log('get customers', err);
+        });
+});
+
 // ADD CUSTOMER
 router.post('/customers/add', (req, res) => {
     let newCust = req.body;

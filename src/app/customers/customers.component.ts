@@ -16,7 +16,7 @@ export class CustomersComponent implements OnInit {
   displayedColumns = ['id', 'firstName', 'lastName', 'company', 'phone', 'icons'];
   dataSource: MatTableDataSource<Customer>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  // updCustomer: Customer = new Customer(); // for the edit dialog
+  
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../data.service';
+import { Customer } from '../models/customer-model';
 
 @Component({
   selector: 'app-customer',
@@ -7,15 +9,15 @@ import { ActivatedRoute } from '@angular/router'
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-
-  id: number = 0;
-
-  constructor( private route: ActivatedRoute ) { }
+  cust: Customer;
+  constructor( 
+    private route: ActivatedRoute,
+    private dataService: DataService ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.id = params.id;
       console.log("the id parameter is: " + params.id);
+      this.dataService.getCustById(params.id).subscribe(data => this.cust = data[0]);
     });
   }
 

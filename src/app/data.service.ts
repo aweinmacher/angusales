@@ -17,6 +17,11 @@ export class DataService {
     );
   }
 
+  getCustById(id): Observable<Customer[]> {
+    console.log('get cust by ID at service');
+    return this.http.get<Customer[]>(`http://localhost:3000/api/customers/${id}`);
+  }
+
   addCustomer(newCust: Customer):Observable<Customer> { // better to do at the server
     console.log('add cust at service');
     return this.http.post<Customer>('http://localhost:3000/api/customers/add', {
