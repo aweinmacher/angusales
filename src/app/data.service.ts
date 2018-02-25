@@ -22,14 +22,14 @@ export class DataService {
     console.log('get cust by ID at service');
     return this.http.get<Customer[]>(`api/customers/${id}`);
   }
-  addCustomer(newCust: Customer):Observable<Customer> { // better to do at the server
+  addCustomer(newCust: any[]):Observable<Customer> { // better to do at the server
     console.log('add cust at service');
     return this.http.post<Customer>('api/customers/add', {
-      firstname: newCust.firstName,
-      lastname: newCust.lastName,
-      comp_id: Number(newCust.company), // will be replaced with the select input
-      email: newCust.email,
-      phone: newCust.phone
+      firstname: newCust[0].firstName,
+      lastname: newCust[0].lastName,
+      comp_id: newCust[1], // got from select input
+      email: newCust[0].email,
+      phone: newCust[0].phone
     });
   }
   deleteCustomer(cust: Customer): Observable<Customer> {

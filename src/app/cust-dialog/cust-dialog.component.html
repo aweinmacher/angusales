@@ -13,7 +13,7 @@
     <input matInput [(ngModel)]="data.cust.company" placeholder="Company">
   </mat-form-field> -->
   <mat-form-field>
-    <mat-select placeholder="Company">
+    <mat-select [(value)]="selected" placeholder="Company">
       <mat-option *ngFor="let comp of data.compList" [value]="comp.comp_id">
         {{ comp.name }}
       </mat-option>
@@ -33,5 +33,5 @@
 
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data.cust" cdkFocusInitial>Submit</button>
+  <button mat-button [mat-dialog-close]="[data.cust, selected]" cdkFocusInitial>Submit</button>
 </div>
