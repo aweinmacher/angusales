@@ -6,7 +6,6 @@ import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 import { Customer } from '../models/customer-model';
 
-/*** @title Table with filtering */
 @Component({
   selector: 'app-customers',
   styleUrls: ['./customers.component.css'],

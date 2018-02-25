@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Customer } from './models/customer-model';
+import { Company } from './models/company-model';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
@@ -7,6 +8,7 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class DataService {
   customersData$: Subject<Customer[]> = new Subject();
+  companiesData$: Subject<Company[]> = new Subject();
 
   constructor(private http: HttpClient) { }
 
@@ -16,12 +18,10 @@ export class DataService {
       data => this.customersData$.next(data)
     );
   }
-
   getCustById(id): Observable<Customer[]> {
     console.log('get cust by ID at service');
     return this.http.get<Customer[]>(`http://localhost:3000/api/customers/${id}`);
   }
-
   addCustomer(newCust: Customer):Observable<Customer> { // better to do at the server
     console.log('add cust at service');
     return this.http.post<Customer>('http://localhost:3000/api/customers/add', {
@@ -32,12 +32,10 @@ export class DataService {
       phone: newCust.phone
     });
   }
-
   deleteCustomer(cust: Customer): Observable<Customer> {
     console.log('delete cust at service');
     return this.http.delete<Customer>(`http://localhost:3000/api/customers/delete/${cust.id}`);
   }
-
   editCustomer(updCust: Customer): Observable<Customer> {
     console.log('edit cust at service');
     return this.http.put<Customer>(`http://localhost:3000/api/customers/update/${updCust.id}`, {
@@ -48,6 +46,15 @@ export class DataService {
       phone: updCust.phone
     });
   }
+
+  getCompanies(): void {
+    this.http.get<Company[]>('http://localhost:3000/api/companies')
+    .subscribe(
+      data => this.companiesData$.next(data)
+    );
+  }
+
+
 }
 
 // const CUSTOMERS_DATA: Customer[] = [

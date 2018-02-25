@@ -78,7 +78,18 @@ router.put('/customers/update/:id', (req, res) => {
         });
 });
 
-
+// GET COMPANIES
+router.get('/companies', (req, res) => {
+    connection.query(
+        `SELECT companies.comp_id as id, name, address, country, count(customers.cust_id) as count
+            FROM companies
+            LEFT JOIN customers on customers.comp_id = companies.comp_id
+            GROUP BY companies.comp_id, name, address, country`,
+        function (err, rows, fields) {
+            if (!err) res.send(rows);
+            else console.log('get companies', err);
+        });
+});
 
 
 
