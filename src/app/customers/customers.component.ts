@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { CustDialogComponent } from '../cust-dialog/cust-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 import { Customer } from '../models/customer-model';
@@ -12,12 +14,13 @@ import { Customer } from '../models/customer-model';
 })
 export class CustomersComponent implements OnInit {
   displayedColumns = ['id', 'firstName', 'lastName', 'company', 'phone', 'icons'];
-  // data: Customer[];
   dataSource: MatTableDataSource<Customer>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  // updCustomer: Customer = new Customer(); // for the edit dialog
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -42,6 +45,20 @@ export class CustomersComponent implements OnInit {
     );
   }
   
+  openDialog(updCustomer): void {
+    let dialogRef = this.dialog.open(CustDialogComponent, {
+      width: '50vw',
+      data: {cust: updCustomer, heading: 'Edit'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      this.dataService.editCustomer(result).subscribe(
+        data => this.dataService.getCustomers()
+      );
+    });
+  }
 
   /*** Set the paginator after the view init since this component will be able to query its view for the initialized paginator. */
   // ngAfterViewInit() {

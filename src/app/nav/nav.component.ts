@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { CustDialogComponent } from '../cust-dialog/cust-dialog.component';
-import { Customer } from '../models/customer-model';
 import { DataService } from '../data.service';
+import { Customer } from '../models/customer-model';
 
 @Component({
   selector: 'app-nav',

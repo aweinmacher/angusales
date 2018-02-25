@@ -48,7 +48,7 @@
         <span class='pointer icon' [routerLink]="['customers', element.id]">
           <i class="material-icons">more_horiz</i>
         </span>
-        <span class='pointer icon'>
+        <span class='pointer icon' (click)="openDialog(element)">
           <i class="material-icons">create</i>
         </span>
         <span class='pointer icon' (click)="deleteCustomer(element)">

@@ -51,7 +51,18 @@ router.delete('/customers/delete/:id', (req, res) => {
         });
 });
 
-
+// UPDATE CUSTOMER
+router.put('/customers/update/:id', (req, res) => {
+    let custId = req.params.id;
+    let updCust = req.body;
+    connection.query(
+        `UPDATE customers SET ? WHERE ?`,
+        [updCust, { cust_id: custId }],
+        function (err, rows, fields) {
+            if (!err) res.send(rows);
+            else console.log('update customer', err);
+        });
+});
 
 
 

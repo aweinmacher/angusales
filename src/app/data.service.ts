@@ -22,7 +22,7 @@ export class DataService {
     return this.http.post<Customer>('http://localhost:3000/api/customers/add', {
       firstname: newCust.firstName,
       lastname: newCust.lastName,
-      comp_id: 3,
+      comp_id: Number(newCust.company), // will be replaced with the select input
       email: newCust.email,
       phone: newCust.phone
     });
@@ -33,7 +33,16 @@ export class DataService {
     return this.http.delete<Customer>(`http://localhost:3000/api/customers/delete/${cust.id}`);
   }
 
-
+  editCustomer(updCust: Customer): Observable<Customer> {
+    console.log('edit cust at service');
+    return this.http.put<Customer>(`http://localhost:3000/api/customers/update/${updCust.id}`, {
+      firstname: updCust.firstName,
+      lastname: updCust.lastName,
+      comp_id: Number(updCust.company), // will be replaced with the select input
+      email: updCust.email,
+      phone: updCust.phone
+    });
+  }
 }
 
 // const CUSTOMERS_DATA: Customer[] = [
