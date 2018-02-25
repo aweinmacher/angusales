@@ -1,28 +1,28 @@
-<h1 mat-dialog-title>New Customer Details</h1>
+<h1 mat-dialog-title>{{data.heading}} Customer Details</h1>
 <div mat-dialog-content>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.firstName" placeholder="First name">
+    <input matInput [(ngModel)]="data.cust.firstName" placeholder="First name">
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.lastName" placeholder="Last name">
+    <input matInput [(ngModel)]="data.cust.lastName" placeholder="Last name">
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.company" placeholder="Company">
+    <input matInput [(ngModel)]="data.cust.company" placeholder="Company">
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.email" placeholder="e-mail">
+    <input matInput [(ngModel)]="data.cust.email" placeholder="e-mail">
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.phone" placeholder="phone">
+    <input matInput [(ngModel)]="data.cust.phone" placeholder="phone">
   </mat-form-field>
 
 </div>
 
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Submit</button>
+  <button mat-button [mat-dialog-close]="data.cust" cdkFocusInitial>Submit</button>
 </div>

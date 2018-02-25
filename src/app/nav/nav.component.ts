@@ -23,7 +23,7 @@ export class NavComponent implements OnInit {
   openDialog(): void {
     let dialogRef = this.dialog.open(AddCustDialogComponent, {
       width: '50vw',
-      data: this.newCustomer
+      data: {cust: this.newCustomer, heading: 'New'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
