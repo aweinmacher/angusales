@@ -1,8 +1,12 @@
 <div *ngIf='cust'>
   <h1>Customer Details</h1>
-  <p>ID: {{cust.id}}</p>
-  <p>Full Name: {{cust.firstName}} {{cust.lastName}}</p>
-  <p>Company: {{cust.company}}  </p>
-  <p>E-mail: {{cust.email}}  </p>
-  <p>Tel: {{cust.phone}}  </p>
+  <br>
+  <h5><b>Full Name:</b> {{cust.firstName}} {{cust.lastName}}</h5>
+  <h5><b>Company:</b> {{cust.company}} </h5>
+  <h5><b>E-mail:</b> {{cust.email}} </h5>
+  <h5><b>Tel:</b> {{cust.phone}} </h5>
+  <br>
+  
+  <br>
+  <button class="btn btn-outline-dark" routerLink='/'>Back to Customers' List</button>
 </div>
