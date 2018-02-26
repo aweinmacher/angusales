@@ -15,7 +15,7 @@ router.get('/customers', (req, res) => {
     try {
         connection.query(
             `SELECT cust_id as id, firstname as firstName, lastname as lastName, 
-        companies.name as company, email, phone 
+            companies.comp_id as compId, companies.name as company, email, phone 
         FROM customers left join companies on customers.comp_id = companies.comp_id 
         order by cust_id`,
             function (err, rows, fields) {
@@ -31,7 +31,8 @@ router.get('/customers', (req, res) => {
 router.get('/customers/:id', (req, res) => {
     console.log('get cust by ID at the server: ', req.params.id);
     connection.query(
-        `SELECT cust_id as id, firstname as firstName, lastname as lastName, companies.name as company, email, phone 
+        `SELECT cust_id as id, firstname as firstName, lastname as lastName, companies.comp_id as compId, 
+        companies.name as company, email, phone 
         FROM customers
         left join companies on customers.comp_id = companies.comp_id
         WHERE cust_id = ${req.params.id}`,

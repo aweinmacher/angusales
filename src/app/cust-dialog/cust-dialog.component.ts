@@ -9,7 +9,6 @@ import { Customer } from '../models/customer-model';
   styleUrls: ['./cust-dialog.component.css']
 })
 export class CustDialogComponent implements OnInit {
-  selected;
   constructor( 
     public dialogRef: MatDialogRef<CustDialogComponent>,
     @Inject(MAT_DIALOG_DATA) 
