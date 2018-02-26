@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { CustDialogComponent } from '../cust-dialog/cust-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 import { Customer } from '../models/customer-model';
@@ -10,15 +12,47 @@ import { Customer } from '../models/customer-model';
 })
 export class CustomerComponent implements OnInit {
   cust: Customer;
+  compList: any[];
   constructor( 
     private route: ActivatedRoute,
-    private dataService: DataService ) { }
+    private dataService: DataService,
+    public dialog: MatDialog
+   ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       console.log("the id parameter is: " + params.id);
       this.dataService.getCustById(params.id).subscribe(data => this.cust = data[0]);
     });
+    // to make edit customer dialog work with companies' list
+    this.dataService.getCompanies();
+    this.dataService.companiesData$
+      .subscribe(data => {
+        this.compList = data.map(item => {
+          return { comp_id: item.id, name: item.name }
+        })
+      })
   }
 
+  deleteCustomer(cust: Customer) {
+    this.dataService.deleteCustomer(cust).subscribe(
+      data => this.dataService.getCustomers()
+    );
+  }
+
+  openDialog(updCustomer): void {
+    let dialogRef = this.dialog.open(CustDialogComponent, {
+      width: '50vw',
+      data: { cust: updCustomer, heading: 'Edit', compList: this.compList }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      if (result) {
+        this.dataService.editCustomer(result).subscribe(
+          data => this.dataService.getCustomers()
+        );
+      }
+    });
+  }
 }

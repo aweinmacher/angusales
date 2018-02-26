@@ -9,6 +9,9 @@ import { Customer } from '../models/customer-model';
   styleUrls: ['./cust-dialog.component.css']
 })
 export class CustDialogComponent implements OnInit {
+
+  selected: Customer = new Customer;
+
   constructor( 
     public dialogRef: MatDialogRef<CustDialogComponent>,
     @Inject(MAT_DIALOG_DATA) 
@@ -18,8 +21,11 @@ export class CustDialogComponent implements OnInit {
   // for Cancel button
   onNoClick(): void {
     this.dialogRef.close();
+    this.selected = Object.assign({}, this.data.cust);
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.selected = Object.assign({}, this.data.cust);
+  }
 
 }

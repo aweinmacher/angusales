@@ -1,12 +1,17 @@
 <div *ngIf='cust'>
   <h1>Customer Details</h1>
   <br>
+  <span class='pointer icon' (click)="openDialog(cust)">
+    <i class="material-icons">create</i>
+  </span>
+  <span class='pointer icon' (click)="deleteCustomer(cust)" routerLink='/'>
+    <i class="material-icons">delete</i>
+  </span>
+  <br>
   <h5><b>Full Name:</b> {{cust.firstName}} {{cust.lastName}}</h5>
   <h5><b>Company:</b> {{cust.company}} </h5>
   <h5><b>E-mail:</b> {{cust.email}} </h5>
   <h5><b>Tel:</b> {{cust.phone}} </h5>
-  <br>
-  
   <br>
   <button class="btn btn-outline-dark" routerLink='/'>Back to Customers' List</button>
 </div>
