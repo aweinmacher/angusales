@@ -1,20 +1,20 @@
 <h1 mat-dialog-title>{{data.heading}} Company Details</h1>
 <div mat-dialog-content>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.comp.name" placeholder="Name">
+    <input matInput [(ngModel)]="data.comp.name" placeholder="Name" required>
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.comp.address" placeholder="Address">
+    <input matInput [(ngModel)]="data.comp.address" placeholder="Address" required>
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.comp.country" placeholder="Country">
+    <input matInput [(ngModel)]="data.comp.country" placeholder="Country" required>
   </mat-form-field>
 
 </div>
 
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data.comp" cdkFocusInitial>Submit</button>
+  <button mat-button (click)="onNoClick()" class="btn btn-outline-secondary">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.comp" class="btn btn-outline-success" cdkFocusInitial>Submit</button>
 </div>

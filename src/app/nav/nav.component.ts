@@ -40,7 +40,7 @@ export class NavComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
+      console.log('The customer dialog was closed', result);
       if (result) {
         this.dataService.addCustomer(result).subscribe(
           data => this.dataService.getCustomers()
