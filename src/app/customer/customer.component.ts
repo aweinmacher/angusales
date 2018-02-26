@@ -53,6 +53,7 @@ export class CustomerComponent implements OnInit {
         this.dataService.editCustomer(result).subscribe(
           data => { 
             this.dataService.getCustById(updCustomer.id);
+            this.dataService.getCustomers(); // to feel safe about my Customers Subject
           }
         );
       }
