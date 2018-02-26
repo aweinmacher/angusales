@@ -24,7 +24,7 @@ export class CustomersComponent implements OnInit {
 
   ngOnInit() {
     // to make edit customer dialog work with companies' list
-    this.dataService.getCompanies(); // not sure it will always work before next line
+    this.dataService.getCompanies();
     this.dataService.companiesData$
       .subscribe(data => {
         this.compList = data.map(item => {
@@ -43,7 +43,7 @@ export class CustomersComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }

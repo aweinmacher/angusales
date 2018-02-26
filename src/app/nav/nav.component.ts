@@ -24,7 +24,7 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
     // to make add customer dialog work with companies' list
-    this.dataService.getCompanies(); // not sure it will always work before next line
+    this.dataService.getCompanies();
     this.dataService.companiesData$
       .subscribe(data => {
         this.compList = data.map(item => {
