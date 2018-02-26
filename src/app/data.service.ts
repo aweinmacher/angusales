@@ -8,21 +8,24 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class DataService {
   customersData$: Subject<Customer[]> = new Subject();
+  singleCust$: Subject<Customer[]> = new Subject();
   companiesData$: Subject<Company[]> = new Subject();
 
   constructor(private http: HttpClient) { }
 
   getCustomers(): void {
     this.http.get<Customer[]>('api/customers')
-    .subscribe(
-      data => this.customersData$.next(data)
+      .subscribe(
+        data => this.customersData$.next(data)
+      );
+  }
+  getCustById(id): void {
+    console.log('get cust by ID at service');
+    this.http.get<Customer[]>(`api/customers/${id}`).subscribe(
+      data => this.singleCust$.next(data)
     );
   }
-  getCustById(id): Observable<Customer[]> {
-    console.log('get cust by ID at service');
-    return this.http.get<Customer[]>(`api/customers/${id}`);
-  }
-  addCustomer(newCust: Customer):Observable<Customer> { // better to do at the server
+  addCustomer(newCust: Customer): Observable<Customer> { // better to do at the server
     console.log('add cust at service');
     return this.http.post<Customer>('api/customers/add', {
       firstname: newCust.firstName,
@@ -49,11 +52,11 @@ export class DataService {
 
   getCompanies(): void {
     this.http.get<Company[]>('api/companies')
-    .subscribe(
-      data => this.companiesData$.next(data)
-    );
+      .subscribe(
+        data => this.companiesData$.next(data)
+      );
   }
-  addCompany(newComp: Company):Observable<Company> { // better to do at the server
+  addCompany(newComp: Company): Observable<Company> { // better to do at the server
     console.log('add comp at service');
     return this.http.post<Company>('api/companies/add', {
       name: newComp.name,

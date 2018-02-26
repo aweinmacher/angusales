@@ -20,9 +20,10 @@ export class CustomerComponent implements OnInit {
    ) { }
 
   ngOnInit() {
+    // to update the view after edit
     this.route.params.subscribe(params => {
-      console.log("the id parameter is: " + params.id);
-      this.dataService.getCustById(params.id).subscribe(data => this.cust = data[0]);
+      this.dataService.getCustById(params.id);
+      this.dataService.singleCust$.subscribe(data => this.cust = data[0]);
     });
     // to make edit customer dialog work with companies' list
     this.dataService.getCompanies();
@@ -50,7 +51,9 @@ export class CustomerComponent implements OnInit {
       console.log('The dialog was closed', result);
       if (result) {
         this.dataService.editCustomer(result).subscribe(
-          data => this.dataService.getCustomers()
+          data => { 
+            this.dataService.getCustById(updCustomer.id);
+          }
         );
       }
     });
