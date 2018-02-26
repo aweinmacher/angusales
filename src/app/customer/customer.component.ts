@@ -4,6 +4,7 @@ import { CustDialogComponent } from '../cust-dialog/cust-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 import { Customer } from '../models/customer-model';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-customer',
@@ -16,7 +17,8 @@ export class CustomerComponent implements OnInit {
   constructor( 
     private route: ActivatedRoute,
     private dataService: DataService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
    ) { }
 
   ngOnInit() {
@@ -37,7 +39,9 @@ export class CustomerComponent implements OnInit {
 
   deleteCustomer(cust: Customer) {
     this.dataService.deleteCustomer(cust).subscribe(
-      data => this.dataService.getCustomers()
+      (res)=> { if (res) {
+          this.router.navigate(['/']); 
+      }}
     );
   }
 
@@ -53,7 +57,6 @@ export class CustomerComponent implements OnInit {
         this.dataService.editCustomer(result).subscribe(
           data => { 
             this.dataService.getCustById(updCustomer.id);
-            this.dataService.getCustomers(); // to feel safe about my Customers Subject
           }
         );
       }
