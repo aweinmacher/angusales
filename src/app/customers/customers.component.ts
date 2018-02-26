@@ -15,7 +15,7 @@ export class CustomersComponent implements OnInit {
   displayedColumns = ['id', 'firstName', 'lastName', 'company', 'phone', 'icons'];
   dataSource: MatTableDataSource<Customer>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
+  compList: any[];
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
@@ -23,6 +23,15 @@ export class CustomersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // to make edit customer dialog work with companies' list
+    this.dataService.getCompanies(); // not sure it will always work before next line
+    this.dataService.companiesData$
+      .subscribe(data => {
+        this.compList = data.map(item => {
+          return { comp_id: item.id, name: item.name }
+        })
+      })
+    // to build the table and update it after every change
     this.dataService.customersData$
       .subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
@@ -35,7 +44,7 @@ export class CustomersComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
 
@@ -48,21 +57,17 @@ export class CustomersComponent implements OnInit {
   openDialog(updCustomer): void {
     let dialogRef = this.dialog.open(CustDialogComponent, {
       width: '50vw',
-      data: { cust: updCustomer, heading: 'Edit' }
+      data: { cust: updCustomer, heading: 'Edit', compList: this.compList }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
-      this.dataService.editCustomer(result).subscribe(
-        data => this.dataService.getCustomers()
-      );
+      console.log('The dialog was closed', result);
+      if (result) {
+        this.dataService.editCustomer(result).subscribe(
+          data => this.dataService.getCustomers()
+        );
+      }
     });
   }
-
-  /*** Set the paginator after the view init since this component will be able to query its view for the initialized paginator. */
-  // ngAfterViewInit() {
-  //   // this.dataSource.paginator = this.paginator;
-  // }
 
 }

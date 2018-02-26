@@ -16,7 +16,7 @@ export class CompDialogComponent implements OnInit {
     public data: any
   ) { }
 
-  // why do we need this?
+  // for Cancel button
   onNoClick(): void {
     this.dialogRef.close();
   }

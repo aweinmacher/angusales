@@ -15,7 +15,7 @@ export class NavComponent implements OnInit {
 
   newCustomer: Customer = new Customer();
   newCompany: Company = new Company();
-  compList: any[]; // shoud be subsribed to the compData$ and map it in order to 
+  compList: any[]; 
 
   constructor(
     public dialog: MatDialog,
@@ -23,6 +23,7 @@ export class NavComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // to make add customer dialog work with companies' list
     this.dataService.getCompanies(); // not sure it will always work before next line
     this.dataService.companiesData$
       .subscribe(data => {
@@ -39,11 +40,12 @@ export class NavComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
-      this.dataService.addCustomer(result).subscribe(
-        data => this.dataService.getCustomers()
-      );
+      console.log('The dialog was closed', result);
+      if (result) {
+        this.dataService.addCustomer(result).subscribe(
+          data => this.dataService.getCustomers()
+        );
+      }
       this.newCustomer = new Customer();
     });
   }
@@ -56,9 +58,11 @@ export class NavComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The company dialog was closed', result);
-      this.dataService.addCompany(result).subscribe(
-        data => this.dataService.getCompanies()
-      );
+      if (result) {
+        this.dataService.addCompany(result).subscribe(
+          data => this.dataService.getCompanies()
+        );
+      }
     });
   }
 

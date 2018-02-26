@@ -8,18 +8,11 @@
     <input matInput [(ngModel)]="data.cust.lastName" placeholder="Last name">
   </mat-form-field>
   <br>
-
-  <!-- <mat-form-field>
-    <input matInput [(ngModel)]="data.cust.company" placeholder="Company">
-  </mat-form-field> -->
   <mat-form-field>
     <mat-select [(value)]="data.cust.compId" placeholder="Company">
-      <mat-option *ngFor="let comp of data.compList" [value]="comp.comp_id">
-        {{ comp.name }}
-      </mat-option>
+      <mat-option *ngFor="let comp of data.compList" [value]="comp.comp_id">{{ comp.name }}</mat-option>
     </mat-select>
   </mat-form-field>
-
   <br>
   <mat-form-field>
     <input matInput [(ngModel)]="data.cust.email" placeholder="e-mail">
