@@ -10,6 +10,8 @@ import { Company } from '../models/company-model';
 })
 export class CompDialogComponent implements OnInit {
 
+  selected: Company = new Company;
+
   constructor(
     public dialogRef: MatDialogRef<CompDialogComponent>,
     @Inject(MAT_DIALOG_DATA)
@@ -19,6 +21,7 @@ export class CompDialogComponent implements OnInit {
   // for Cancel button
   onNoClick(): void {
     this.dialogRef.close();
+    this.selected = Object.assign({}, this.data.comp);
   }
 
   ngOnInit() {
